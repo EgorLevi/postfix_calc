@@ -1,5 +1,3 @@
-from turtle import Turtle
-
 
 B =   ['2', '+', '2', '*', '2']
 priority = {
