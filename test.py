@@ -48,25 +48,14 @@ def c(input):
                 s2.append(item)
 
             else:
-
-                if priority[s2[-1]] > priority[item] and len(s1) >= 2:
+                if priority[s2[-1]] > priority[item]:
                     c1 = int(s1.pop())
                     c2 = int(s1.pop())
-                    s1 = calc_dat_shit(s1, c1, c2, item)
-                    s1.append(item)
+                    op =  s2.pop()
+                    s2.append(item)
 
-                if priority[s2[-1]] < priority[item]:
-                    c1 = int(s1.pop())
-                    c2 = int(s1.pop())
+                    s1 = calc_dat_shit(s1, c1, c2, op)
 
-                    s1 = calc_dat_shit(s1, c1, c2, item)
-
-                elif priority[s2[-1]] == priority[item]:
-                    c1 = int(s1.pop())
-                    c2 = int(s1.pop())
-
-                    s1 = calc_dat_shit(s1, c1, c2, item)
-                    pass
                 else:
                     s2.append(item)
                     pass
