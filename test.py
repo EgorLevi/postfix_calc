@@ -48,7 +48,7 @@ def c(input):
                 s2.append(item)
 
             else:
-                if priority[s2[-1]] > priority[item]:
+                if priority[s2[-1]] > priority[item] or (priority[s2[-1]] == priority[item] and priority[item] == 2):
                     c1 = int(s1.pop())
                     c2 = int(s1.pop())
                     op =  s2.pop()
