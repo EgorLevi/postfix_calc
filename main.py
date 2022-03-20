@@ -1,5 +1,5 @@
 
-B =   ['2', '+', '2', '*', '2']
+B =   ['2', '+', '2', '*', '2', '+', '2']
 priority = {
     '+':1,
     '*':2
@@ -21,13 +21,15 @@ def c(input):
             if stack_is_empty(s2):
                 s2.append(item)
             else:
-                if priority[s2[-1]] < priority[item]:
+                if priority[item] < priority[s2[-1]]:
                     c1 = int(s1.pop())
                     c2 = int(s1.pop())
+                    op = s2.pop()
+                    s2.append(item)
 
-                    if item == '+':
+                    if op == '+':
                         s1.append(c1+c2)
-                    if item == '*':
+                    if op == '*':
                         s1.append(c1*c2)
                 else:
                     s2.append(item)
@@ -40,7 +42,7 @@ def c(input):
             pass
 
         pass
-
+    print(s1, s2)
     while not stack_is_empty(s2):
         if not stack_is_empty(s1):
             c1 = int(s1.pop())
