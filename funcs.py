@@ -22,7 +22,7 @@ def calculate(s1, s2, op):
         if op == '+':
             s1.append(f1+f2)
         if op == '*':
-            s1.append(f1*f)
+            s1.append(f1*f2)
 
         return s1
 
