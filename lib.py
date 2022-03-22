@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect()
+connection = sqlite3.connect("history.db")
 cursor = connection.cursor()
 def create_table():
     cursor.execute("""CREATE TABLE IF NOT EXISTS calcss(input TEXT, result TEXT)""")
@@ -8,6 +8,12 @@ def create_table():
     return
 
 def insert_calc(expersion, result):
-    cursor.execute(f"""INSERT INTO calcss VALUES({expresion},{result})""")
-    connection.commit()
+    try:
+        cursor.execute(f"""INSERT INTO calcss VALUES({expersion},{result})""")
+        connection.commit()
+    except:
+        create_table()
+        insert_calc(expersion, result)
     return
+
+insert_calc("2+2", "4")
