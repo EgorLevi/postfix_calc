@@ -13,7 +13,13 @@ def insert_calc(expersion, result):
         connection.commit()
     except:
         create_table()
-        insert_calc(expersion, result)
+        cursor.execute(f"""INSERT INTO calcss VALUES(?,?)""", (expersion, result))
+        connection.commit()
     return
 
-insert_calc("2+2", "4")
+
+def show_history():
+    print(cursor.execute("""SELECT * FROM calcss""").fetchall())
+
+insert_calc("asd", "4")
+show_history()
