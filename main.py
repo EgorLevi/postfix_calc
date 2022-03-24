@@ -4,9 +4,11 @@ priority = {
     '+':1,
     '-':1,
     '*':2,
-    '/':2
+    '/':2,
+    '(':0,
+    ')':0
 }
-oper = ['+', '*', '-', '/']
+oper = ['+', '*', '-', '/', '(', ')']
 
 def stack_is_empty(stack):
     if len(stack) == 0:
@@ -46,7 +48,17 @@ def c(input):
         if item in oper:
             if stack_is_empty(s2):
                 s2.append(item)
+            if item == oper[-2]:
+                while s2[-1] != '(':
+                    c1 = int(s1.pop())
+                    c2 = int(s1.pop())
+                    op = s2.pop()
 
+                    if op == '+':
+                        s1.append(c1+c2)
+                    if op == '*':
+                        s1.append(c1*c2)
+                s2.pop()
             else:
                 if priority[item] < priority[s2[-1]]:
                     c1 = int(s1.pop())
@@ -80,7 +92,6 @@ def c(input):
 
 
     return s1
-    pass
 
 while 1:
     s = input('enter calcer: ')
