@@ -30,7 +30,8 @@ class StackCalc:
                 collect_str = ''
             else:
                 collect_str+= item
-        rs.append(collect_str)
+        if collect_str!='':
+            rs.append(collect_str)
         return rs
 
     def dual_brekets_check(self, inp_strin):
@@ -46,7 +47,7 @@ class StackCalc:
             operations_stack = []      
 
             for item in inputed_stack:
-                if item in '0123456789':
+                if item not in self.operations:
                     numbers_stack.append(item)
                 else:
                     if self.stack_is_empty(operations_stack):
@@ -66,14 +67,20 @@ class StackCalc:
                                 operations_stack.append(item)
                             else:
                                 operations_stack.append(item)
-
+            operations_stack.reverse()
+            numbers_stack.reverse()
             while not self.stack_is_empty(operations_stack):
                 numbers_stack.append(self.priority[operations_stack.pop()][1](int(numbers_stack.pop()), int(numbers_stack.pop())))
                 
             return numbers_stack[0]
         return False
 
+#print(get_stack("(2+2)^2+7*3-(11+5)"))
+b = "(2+2)^2+7*3-(11+22)" #= 16 + 21 - 33
+c = '16+21-33'
+# 16 21 33
+# + -
 a = StackCalc()
-b = '2*3^2+2'
-c = a.calculate_string(b)
-print(c)
+print(a.calculate_string(b))
+
+
